@@ -101,10 +101,8 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: |
-          ENV="${{ inputs.environment || 'dev' }}"
           terraform plan \
             -input=false \
-            -var-file=${ENV}.tfvars \
             -out=tfplan \
             -no-color
 
