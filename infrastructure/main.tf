@@ -1,6 +1,6 @@
 terraform {
   required_version = "~> 1.10"
-  
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -13,7 +13,6 @@ terraform {
     region         = "eu-central-1"
     encrypt        = true
     dynamodb_table = "terraform-state-lock"
-    # key is set dynamically by workflow
   }
 }
 
