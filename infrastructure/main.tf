@@ -1,5 +1,20 @@
 terraform {
   required_version = "~> 1.10"
+  
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+
+  backend "s3" {
+    bucket         = "angelos-test-terraform-state"
+    region         = "eu-central-1"
+    encrypt        = true
+    dynamodb_table = "terraform-state-lock"
+    # key is set dynamically by workflow
+  }
 }
 
 provider "aws" {
