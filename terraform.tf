@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.0" 
+      version = "~> 5.0"
     }
   }
 }
@@ -190,7 +190,7 @@ output "github_actions_role_arn" {
 variable "bucket_name" {
   description = "S3 bucket that stores the Terraform state files"
   type        = string
-  default     = "your-company-terraform-state"
+  default     = "angelos-test-terraform-state"
 }
 
 variable "dynamo_table_name" {

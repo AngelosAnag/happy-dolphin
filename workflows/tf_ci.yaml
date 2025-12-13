@@ -12,9 +12,6 @@ on:
   pull_request:
     branches:
       - main
-    paths:
-      - 'projectdir/**'
-      - '.github/workflows/terraform.yml'
 
 permissions:
   id-token: write
@@ -25,7 +22,7 @@ permissions:
 env:
   AWS_REGION: 'eu-central-1'
   TERRAFORM_VERSION: '1.10.5'
-  TF_STATE_BUCKET: 'terraform-state-bucket'
+  TF_STATE_BUCKET: 'angelos-test-terraform-state'
   TF_DYNAMODB_TABLE: 'terraform-state-lock'
 
 jobs:
