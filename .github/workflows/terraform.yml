@@ -110,7 +110,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: tfplan-${{ inputs.environment || 'dev' }}
-          path: ./tfplan
+          path: |
+            tfplan
+            .terraform.lock.hcl
           retention-days: 5
           if-no-files-found: error
 
