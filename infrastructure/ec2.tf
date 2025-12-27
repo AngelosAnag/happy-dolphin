@@ -7,12 +7,14 @@ data "aws_ami" "ubuntu" {
     values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]
   }
 
-  owners = ["099720109477"] # Canonical
+  owners = ["099720109477"]
 }
 
 resource "aws_instance" "app_server" {
+  for_each = var.instances
+
   ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
+  instance_type = each.value
 
   vpc_security_group_ids = [module.requester_vpc.default_security_group_id]
   subnet_id              = module.requester_vpc.private_subnets[0]
@@ -28,6 +30,6 @@ resource "aws_instance" "app_server" {
   }
 
   tags = {
-    Name = var.instance_name
+    Name = each.key
   }
 }

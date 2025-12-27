@@ -1,4 +1,4 @@
-output "instance_hostname" {
-  description = "Private DNS name of the EC2 instance."
-  value       = aws_instance.app_server.private_dns
+output "instance_hostnames" {
+  description = "Private DNS names of all EC2 instances"
+  value       = [for v in aws_instance.app_server : v.private_dns]
 }

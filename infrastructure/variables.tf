@@ -1,11 +1,9 @@
-variable "instance_name" {
-  description = "Value of the EC2 instance's Name tag."
-  type        = string
-  default     = "learn-terraform"
-}
-
-variable "instance_type" {
-  description = "The EC2 instance's type."
-  type        = string
-  default     = "t3.micro"
+variable "instances" {
+  description = "Map of instances to create"
+  type        = map(string)
+  default = {
+    "web-server"  = "t3.micro"
+    "api-server"  = "t3.small"
+    "worker"      = "t3.medium"
+  }
 }
