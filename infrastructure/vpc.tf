@@ -159,3 +159,14 @@ resource "aws_subnet" "isolated" {
   map_public_ip_on_launch = false
   depends_on              = [aws_vpc.demo]
 }
+
+resource "aws_subnet" "isolated_2" {
+  vpc_id            = aws_vpc.demo.id
+  cidr_block        = var.demo_isolated_subnet_2_cidr
+  availability_zone = var.demo_isolated_subnet_2_az
+  tags = {
+    Name = "demo-isolated-subnet-2"
+  }
+  map_public_ip_on_launch = false
+  depends_on              = [aws_vpc.demo]
+}

@@ -91,3 +91,15 @@ variable "demo_isolated_subnet_az" {
   default     = "eu-central-1a"
 }
 
+variable "demo_isolated_subnet_2_cidr" {
+  description = "CIDR block for the demo isolated subnet 2"
+  type        = string
+  default     = "10.20.4.0/24"
+}
+
+variable "demo_isolated_subnet_2_az" {
+  description = "Availability zone for the demo isolated subnet 2"
+  type        = string
+  default     = "eu-central-1b"
+}
+

@@ -20,7 +20,7 @@ resource "aws_db_instance" "default" {
 
 resource "aws_db_subnet_group" "isolated" {
   name       = "demo-rds-subnet-group"
-  subnet_ids = [aws_subnet.isolated.id]
+  subnet_ids = [aws_subnet.isolated.id, aws_subnet.isolated_2.id]
 
   tags = {
     Name = "demo-rds-subnet-group"
