@@ -14,3 +14,18 @@
 #     Name = "s3-gateway-endpoint"
 #   }
 # }
+
+# Interface endpoint for EC2 to connect to SSM
+# resource "aws_vpc_endpoint" "ssm_interface_endpoint" {
+
+# }
+
+# # Interface endpoint for EC2 to connect to EC2 Messages
+# resource "aws_vpc_endpoint" "ec2_messages_interface_endpoint" {
+
+# }
+
+# # Interface endpoint for EC2 to connect to SSM Messages
+# resource "aws_vpc_endpoint" "ssm_messages_interface_endpoint" {
+
+# }

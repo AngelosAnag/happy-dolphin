@@ -62,10 +62,10 @@ resource "aws_instance" "public_server" {
   ]
 }
 
-
 resource "aws_instance" "private_server" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.private_instance_type
+  ami                  = data.aws_ami.ubuntu.id
+  instance_type        = var.private_instance_type
+  iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
 
   vpc_security_group_ids = [aws_vpc.demo.default_security_group_id]
   subnet_id              = aws_subnet.demo_private.id
@@ -92,8 +92,9 @@ resource "aws_instance" "private_server" {
 }
 
 resource "aws_instance" "isolated_server" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.isolated_instance_type
+  ami                  = data.aws_ami.ubuntu.id
+  instance_type        = var.isolated_instance_type
+  iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
 
   vpc_security_group_ids = [aws_vpc.demo.default_security_group_id]
   subnet_id              = aws_subnet.isolated.id

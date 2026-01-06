@@ -11,7 +11,7 @@ terraform {
   backend "s3" {
     bucket       = "angelos-test-terraform-state"
     key          = "happy-dolphin/infrastructure/terraform.tfstate"
-    region       = "eu-central-1"
+    region       = var.region
     encrypt      = true
     use_lockfile = true
   }

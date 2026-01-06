@@ -26,7 +26,7 @@ module "requester_vpc" {
 
   enable_dns_hostnames   = true
   enable_dns_support     = true
-  enable_nat_gateway     = false  # Disabled to avoid EIP limit
+  enable_nat_gateway     = false # Disabled to avoid EIP limit
   single_nat_gateway     = false
   one_nat_gateway_per_az = false
 }
@@ -44,7 +44,7 @@ module "accepter_vpc" {
 
   enable_dns_hostnames   = true
   enable_dns_support     = true
-  enable_nat_gateway     = false  # Disabled to avoid EIP limit
+  enable_nat_gateway     = false # Disabled to avoid EIP limit
   single_nat_gateway     = false
   one_nat_gateway_per_az = false
 }

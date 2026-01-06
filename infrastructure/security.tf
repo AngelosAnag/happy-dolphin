@@ -275,3 +275,40 @@ resource "aws_network_acl" "private" {
     aws_subnet.demo_private
   ]
 }
+
+resource "aws_security_group" "rds_sg" {
+  name        = "${var.project_name}-rds-sg"
+  description = "Security group for RDS instance"
+  vpc_id      = aws_vpc.demo.id
+
+  ingress {
+    description     = "MySQL/Aurora from app servers"
+    from_port       = 3306
+    to_port         = 3306
+    protocol        = "tcp"
+    security_groups = [aws_security_group.app_servers.id]
+  }
+
+  egress {
+    description = "Allow all outbound traffic"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = merge(
+    var.common_tags,
+    {
+      Name = "${var.project_name}-rds-sg"
+    }
+  )
+
+  depends_on = [
+    aws_vpc.demo
+  ]
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}

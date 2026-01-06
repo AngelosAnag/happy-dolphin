@@ -91,9 +91,3 @@ variable "demo_isolated_subnet_az" {
   default     = "eu-central-1a"
 }
 
-variable "db_allocated_storage" {
-  description = "Allocated storage for the RDS instance (in GB)"
-  type        = number
-  default     = 20
-}
-
