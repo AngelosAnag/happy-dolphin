@@ -312,3 +312,41 @@ resource "aws_security_group" "rds_sg" {
     create_before_destroy = true
   }
 }
+
+# Security group for VPC endpoints
+resource "aws_security_group" "vpc_endpoints" {
+  name_prefix = "${var.project_name}-vpc-endpoints-"
+  description = "Security group for VPC endpoints"
+  vpc_id      = aws_vpc.demo.id
+
+  ingress {
+    description = "HTTPS from VPC"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = [var.main_vpc_cidr]
+  }
+
+  egress {
+    description = "Allow all outbound traffic"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = merge(
+    var.common_tags,
+    {
+      Name = "${var.project_name}-vpc-endpoints-sg"
+    }
+  )
+
+  depends_on = [
+    aws_vpc.demo
+  ]
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}

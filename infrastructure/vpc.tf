@@ -170,3 +170,30 @@ resource "aws_subnet" "isolated_2" {
   map_public_ip_on_launch = false
   depends_on              = [aws_vpc.demo]
 }
+
+resource "aws_route_table" "demo_isolated_rt" {
+  vpc_id = aws_vpc.demo.id
+  tags = {
+    Name = "demo-isolated-rt"
+  }
+}
+
+resource "aws_route_table_association" "demo_isolated_rta" {
+  subnet_id      = aws_subnet.isolated.id
+  route_table_id = aws_route_table.demo_isolated_rt.id
+
+  depends_on = [
+    aws_route_table.demo_isolated_rt,
+    aws_subnet.isolated
+  ]
+}
+
+resource "aws_route_table_association" "demo_isolated_2_rta" {
+  subnet_id      = aws_subnet.isolated_2.id
+  route_table_id = aws_route_table.demo_isolated_rt.id
+
+  depends_on = [
+    aws_route_table.demo_isolated_rt,
+    aws_subnet.isolated_2
+  ]
+}
